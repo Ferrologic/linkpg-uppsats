@@ -189,7 +189,7 @@ ggplot(medel.timme,aes(Group.1,x)) +
   theme_bw() + 
   labs(title = "Medelvärdet på flöde för varje timme", x="Timmar",y="Flöde") + 
   scale_x_discrete(limits = c(0:23)) + 
-  scale_y_discrete(limits = c(26:33)) +
+  #scale_y_discrete(limits = c(26:33)) +
   theme(axis.title.y = element_text(size = 11, face = "bold"),
         axis.title.x = element_text(size = 11, hjust = 0.48, face = "bold"),
         plot.title = element_text(hjust = 0.48, size = 14, face = "bold"),
