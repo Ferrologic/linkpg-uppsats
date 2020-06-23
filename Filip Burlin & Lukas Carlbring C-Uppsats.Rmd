@@ -1,15 +1,14 @@
 ---
 title: "Filip Burlin & Lukas Carlbring C-uppsats"
-output: md_document
+output:
+  github_document:
+    pandoc_args: --webtex
 ---
-
-
 
 # Paket som har använts i R för att köra kod
 
 ```{r, echo=FALSE}
-setwd("~/Documents/Uppsats")
-load("~/Documents/Uppsats/Global_env.RData")
+load("Global_env.RData")
 ```
 
 ```{r, results="hide", message=FALSE}
@@ -292,11 +291,11 @@ I följande kapitel beskrivs alla modeller som har använts för att få fram re
 ## Multipel linjär regression 
 Multipel linjär regression används för att kunna se linjära samband mellan en responsvariabel och två eller fler oberoende förklarande variabler. I den här uppsatsen kommer den användas för att se samband mellan flöde/energi och bakgrundsvariabler som har tagits fram.  Modellen för multipel linjär regression ser ut som följande:
 
-$$y_i = \beta_0 + \beta_1 x_{i,1} + ... + \beta_{p-1} x_{i,p-1} + \epsilon_i .$$
+  $$y_i = \beta_0 + \beta_1 x_{i,1} + ... + \beta_{p-1} x_{i,p-1} + \epsilon_i$$
 
 Då regressionsparametrarna $\beta_0,\beta_1,\dots,\beta_p$ är okända, betecknas de skattade regressionsparametrarna med $\mathbf{b}$. Då ${E[\mathbf{Y}]} = \mathbf{X \beta}$ medför det att $\hat{\mathbf{Y}} = \mathbf{X}\mathbf{b}$. $\mathbf{b}$ kan därmed skattas med minsta kvadratmetoden :
 
-$$\mathbf{b} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}.$$
+$$\mathbf{b} = (\mathbf{X}'\mathbf{X})^{-1}\mathbf{X}'\mathbf{Y}$$
 
 
 Residualerna beräknas sedan med formeln :
@@ -332,11 +331,11 @@ Som nämns ovan så kan $R^2_p$ inte minska då antal variabler ökar. Den alter
 
 $R^2_{a,p}$ beräknas med formeln:
 
-  $$R^2_{a,p} = 1 - (\frac{n-1}{n-p}) \frac{SSE_p}{SSTO} = 1- \frac{\frac{MSE_p}{SSTO}}{n-1}.$$
+  $$R^2_{a,p} = 1 - (\frac{n-1}{n-p}) \frac{SSE_p}{SSTO} = 1- \frac{\frac{MSE_p}{SSTO}}{n-1}$$
 
 Där $MSE_p$ beräknas med hjälp av $SSE_p$ med formeln:
 
-  $$MSE_p = \frac{SSE_p}{n-p}.$$
+  $$MSE_p = \frac{SSE_p}{n-p}$$
 
 Detta gör att modellen med högst $R^2_{a,p}$ värde är en modell som inte har några onödiga x-variabler. Den bästa modellen med enligt denna formel är den med högst $R^2_{a,p}$ värde.
 
@@ -434,8 +433,7 @@ acf()
 I många fall finns periodiska mönster i en tidsserie dock så kan periodiska mönster vara väldigt komplexa och svåra att hitta. Spektralanalys är en teknik för att kunna hitta dessa underliggande periodiska mönstrerna som sker regelbundet, detta kan förknippas med återkommande processer. Spektraltätheter fångar tidseriernas egenskaper med hjälp av att den sönderdelar dessa till trigonometriska funktioner för varje frekvens genom att representera funktionerna med styrkan hos varje periodisk komponent. Detta medgör att tolkningen och utvärderingen av modellen blir enklare. När man tolkar spektraltäthets grafer indikerar en smal och hög topp på att det finns ett starkt periodiskt mönster för den frekvens som toppen är centrerad kring. Ifall toppen är lägre eller bredare indikerar detta på ett mer oklart periodiskt mönster för den frekvensen. En hög topp nära noll (på x-axeln) indikerar på att det finns en stark positiv korrelation mellan de närliggande tidpunkter och data varierar mjukt över tiden. Skulle värden vara nära noll betyder det att de har väldigt låga frekvenser och kan liknas vid långsamma trender i data.
 Funktionen ser ut som följande för en generell AR(p): 
 
-$$S(f) = \frac{\sigma^2_e}{1+ \sum\limits^p_{i=1} \varphi_i^2 - 2\varphi_i cos(2\pi f)}.$$
-
+$$S(f) = \frac{\sigma^2_e}{1 + \sum\limits^p_{i=1}\varphi_i^2-2\varphi_i cos(2\pi f)}$$
 där $\sigma^2_e$ är variansen,  $\pi$ är 3.14 och $f$ är fourier transformationen.
 
 ```{r, eval=FALSE}
@@ -709,7 +707,7 @@ ggplot(rmse.f) +
         plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
         panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = seq(0, 48, 12)) +
-  scale_color_manual(values = rev(brewer.pal(length(levels(rmse.f$Modell)), "Dark2"))) +
+  #scale_color_manual(values = rev(brewer.pal(length(levels(rmse.f$Modell)), "Dark2"))) +
   geom_hline(yintercept=4.225782)
 ```
 
@@ -739,7 +737,7 @@ ggplot(amape.f) +
         plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
         panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = seq(0, 48, 12)) +
-  scale_color_manual(values = rev(brewer.pal(length(levels(amape.f$Modell)), "Dark2"))) +
+  #scale_color_manual(values = rev(brewer.pal(length(levels(amape.f$Modell)), "Dark2"))) +
   geom_hline(yintercept=15.75445)
 ```
 
@@ -771,7 +769,7 @@ ggplot(tic.f) +
         plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
         panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = seq(0, 48, 12)) +
-  scale_color_manual(values = rev(brewer.pal(length(levels(tic.f$Modell)), "Dark2"))) +
+  #scale_color_manual(values = rev(brewer.pal(length(levels(tic.f$Modell)), "Dark2"))) +
   geom_hline(yintercept=0.09233263)
 ```
 
@@ -929,7 +927,7 @@ ggplot(rmse.e) +
         plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
         panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = seq(0, 48, 12)) +
-  scale_color_manual(values = rev(brewer.pal(length(levels(rmse.e$Modell)), "Dark2"))) +
+  #scale_color_manual(values = rev(brewer.pal(length(levels(rmse.e$Modell)), "Dark2"))) +
   geom_hline(yintercept=153.84)
 ```
 
@@ -959,7 +957,7 @@ ggplot(amape.e) +
         plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
         panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = seq(0, 48, 12)) +
-  scale_color_manual(values = rev(brewer.pal(length(levels(amape.e$Modell)), "Dark2"))) +
+  #scale_color_manual(values = rev(brewer.pal(length(levels(amape.e$Modell)), "Dark2"))) +
   geom_hline(yintercept=16.55618)
 ```
 
@@ -990,7 +988,7 @@ ggplot(tic.e) +
         plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
         panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = seq(0, 48, 12)) +
-  scale_color_manual(values = rev(brewer.pal(length(levels(tic.e$Modell)), "Dark2"))) +
+  #scale_color_manual(values = rev(brewer.pal(length(levels(tic.e$Modell)), "Dark2"))) +
   geom_hline(yintercept=0.09640769)
 ```
 
@@ -1010,8 +1008,8 @@ ggplot(acfs.m.tid.e) +
         plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
         panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = seq(0, 337, 24)) +
-  scale_y_continuous(breaks = seq(0, 26000, 5000)) +
-  scale_color_manual(name = "AR ACF", values = rev(brewer.pal(length(levels(acfs.m.tid.e$Modell)), "Oranges")))
+  scale_y_continuous(breaks = seq(0, 26000, 5000))
+  #scale_color_manual(name = "AR ACF", values = rev(brewer.pal(length(levels(acfs.m.tid.e$Modell)), "Oranges")))
 ```
 
 Autokovariansen och den empiriska följer varandra relativt bra dock har den svårt att följa med autokovariansen ju längre fram man går i laggen. Vilket beror på att en del av dygnsvariationen modelleras med regressionsparametrar, och därför försvinner lite av det periodiska mönstret. Figuren visar även tecken på säsongsvariation då det är toppar var 24:e lag i autokovariansen.
