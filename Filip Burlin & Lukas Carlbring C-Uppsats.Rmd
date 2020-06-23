@@ -1,12 +1,15 @@
 ---
 title: "Filip Burlin & Lukas Carlbring C-uppsats"
-output: html_document
+output: md_document
 ---
+
+
 
 # Paket som har använts i R för att köra kod
 
 ```{r, echo=FALSE}
-load("Global_env.RData")
+setwd("~/Documents/Uppsats")
+load("~/Documents/Uppsats/Global_env.RData")
 ```
 
 ```{r, results="hide", message=FALSE}
@@ -706,7 +709,7 @@ ggplot(rmse.f) +
         plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
         panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = seq(0, 48, 12)) +
-  #scale_color_manual(values = rev(brewer.pal(length(levels(rmse.f$Modell)), "Dark2"))) +
+  scale_color_manual(values = rev(brewer.pal(length(levels(rmse.f$Modell)), "Dark2"))) +
   geom_hline(yintercept=4.225782)
 ```
 
@@ -736,7 +739,7 @@ ggplot(amape.f) +
         plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
         panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = seq(0, 48, 12)) +
-  #scale_color_manual(values = rev(brewer.pal(length(levels(amape.f$Modell)), "Dark2"))) +
+  scale_color_manual(values = rev(brewer.pal(length(levels(amape.f$Modell)), "Dark2"))) +
   geom_hline(yintercept=15.75445)
 ```
 
@@ -768,7 +771,7 @@ ggplot(tic.f) +
         plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
         panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = seq(0, 48, 12)) +
-  #scale_color_manual(values = rev(brewer.pal(length(levels(tic.f$Modell)), "Dark2"))) +
+  scale_color_manual(values = rev(brewer.pal(length(levels(tic.f$Modell)), "Dark2"))) +
   geom_hline(yintercept=0.09233263)
 ```
 
@@ -926,7 +929,7 @@ ggplot(rmse.e) +
         plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
         panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = seq(0, 48, 12)) +
-  #scale_color_manual(values = rev(brewer.pal(length(levels(rmse.e$Modell)), "Dark2"))) +
+  scale_color_manual(values = rev(brewer.pal(length(levels(rmse.e$Modell)), "Dark2"))) +
   geom_hline(yintercept=153.84)
 ```
 
@@ -956,7 +959,7 @@ ggplot(amape.e) +
         plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
         panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = seq(0, 48, 12)) +
-  #scale_color_manual(values = rev(brewer.pal(length(levels(amape.e$Modell)), "Dark2"))) +
+  scale_color_manual(values = rev(brewer.pal(length(levels(amape.e$Modell)), "Dark2"))) +
   geom_hline(yintercept=16.55618)
 ```
 
@@ -987,7 +990,7 @@ ggplot(tic.e) +
         plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
         panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = seq(0, 48, 12)) +
-  #scale_color_manual(values = rev(brewer.pal(length(levels(tic.e$Modell)), "Dark2"))) +
+  scale_color_manual(values = rev(brewer.pal(length(levels(tic.e$Modell)), "Dark2"))) +
   geom_hline(yintercept=0.09640769)
 ```
 
@@ -1007,8 +1010,8 @@ ggplot(acfs.m.tid.e) +
         plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
         panel.grid.minor = element_blank()) +
   scale_x_continuous(breaks = seq(0, 337, 24)) +
-  scale_y_continuous(breaks = seq(0, 26000, 5000))
-  #scale_color_manual(name = "AR ACF", values = rev(brewer.pal(length(levels(acfs.m.tid.e$Modell)), "Oranges")))
+  scale_y_continuous(breaks = seq(0, 26000, 5000)) +
+  scale_color_manual(name = "AR ACF", values = rev(brewer.pal(length(levels(acfs.m.tid.e$Modell)), "Oranges")))
 ```
 
 Autokovariansen och den empiriska följer varandra relativt bra dock har den svårt att följa med autokovariansen ju längre fram man går i laggen. Vilket beror på att en del av dygnsvariationen modelleras med regressionsparametrar, och därför försvinner lite av det periodiska mönstret. Figuren visar även tecken på säsongsvariation då det är toppar var 24:e lag i autokovariansen.
